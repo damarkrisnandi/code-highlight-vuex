@@ -1,0 +1,44 @@
+body{
+    font-family: Roboto;
+  }
+  
+  .cookie-alert {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #4A414D;
+      color: #fff;
+      padding: 30px 50px;
+      width: 280px;
+      z-index: 100;
+  }
+  
+  .cookie-alert a {
+      display: block;
+      text-align: center;
+      padding: 5px 10px;
+      margin: 8px auto 0 auto;
+      border-radius: 10px;
+      background: transparent;
+      border: 2px solid #C4AFAF;
+      color: #C4AFAF;
+      transition: all .3s ease;
+      text-decoration: none;
+  }
+  
+  .cookie-alert a:hover {
+      background: #C4AFAF;
+      color: #2f2f2f;
+  }
+  
+  @media only screen and (max-width:480px) {
+      .cookie-alert {
+          text-align: center;
+          left: 0;
+          right: 0;
+          ;
+          margin: 0 auto;
+          max-width: 700px;
+          padding: 10px 30px;
+      }
+  }
