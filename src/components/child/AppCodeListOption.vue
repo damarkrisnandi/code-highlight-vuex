@@ -3,17 +3,19 @@
     <div class="d-flex">
       <app-button
         name="sebelumnya"
-        label="Sebelumnya"
+        label="Prev"
         class="margin-bottom-right"
         :disabled="halaman === 1"
         @onClick="ketikaTombolSebelumnyaDiKlik"
       />
+      &nbsp;
       <app-button
         name="selanjutnya"
-        label="Selanjutnya"
+        label="Next"
         class="margin-bottom-right"
         @onClick="ketikaTombolSelanjutnyaDiKlik"
       />
+      
     </div>
     <div class="d-flex">
         <app-dropdown

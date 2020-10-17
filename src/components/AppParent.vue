@@ -2,24 +2,46 @@
   <div>
     <app-user @keluar="ketikaTombolResetDiKlik" />
     <div class="container">
-      <app-option-editor
-      :input-kode="dataKode.inputKode"
-      :bahasa-pemrograman-terpilih.sync="dataKode.bahasaPemrogramanTerpilih"
-      :twoslash-terpilih.sync="dataKode.twoslashTerpilih"
-      :nama-berkas.sync="dataKode.namaBerkas"
-      :highlight.sync="dataKode.highlight"
-      :hasil-highlight="hasilHighlight"
-      @tersimpan="dapatkanDaftarKode()"
-      @reset="ketikaTombolResetDiKlik"
-      />
-      <app-code-editor
-        :input-kode.sync="dataKode.inputKode"
+      <div class="title">
+        <h1 style="color: black">Code Highlighter</h1>
+        <label>Beautify Your Code Here...</label>
+      </div>
+      <div class="flex-tab">
+        <app-button 
+        name="code-editor"
+        label="Editor"
+        class="space"
+        color="tab"
+        @onClick="klikTabEditor"
+        />
+        <app-button 
+        v-if="$store.state.user.userId"
+        name="code-list"
+        label="List"
+        class="space"
+        color="tab"
+        @onClick="klikTabCodeList"
+        />
+      </div>
+      <div v-if="showCodeEditor || !$store.state.user.userId" style="margin-top: 50px">
+        <app-option-editor
+        :input-kode="dataKode.inputKode"
+        :bahasa-pemrograman-terpilih.sync="dataKode.bahasaPemrogramanTerpilih"
+        :twoslash-terpilih.sync="dataKode.twoslashTerpilih"
+        :nama-berkas.sync="dataKode.namaBerkas"
+        :highlight.sync="dataKode.highlight"
         :hasil-highlight="hasilHighlight"
-        :bahasa-pemrograman-terpilih="dataKode.bahasaPemrogramanTerpilih"
-      />
+        @tersimpan="dapatkanDaftarKode()"
+        @reset="ketikaTombolResetDiKlik"
+        />
+        <app-code-editor
+          :input-kode.sync="dataKode.inputKode"
+          :hasil-highlight="hasilHighlight"
+          :bahasa-pemrograman-terpilih="dataKode.bahasaPemrogramanTerpilih"
+        />
+      </div>
       
-    <div v-if="$store.state.user.userId">
-      <hr>
+    <div v-if="$store.state.user.userId && !showCodeEditor" style="margin-top: 50px">
       <app-code-list-option
         :halaman.sync="filter.halaman"
         :banyak-data.sync="filter.banyakData"
@@ -51,7 +73,8 @@
   import AppOptionEditor from './child/AppOptionEditor';
   import AppCodeEditor from './child/AppCodeEditor';
   import AppCodeListOption from './child/AppCodeListOption';
-  import AppCodeList from './child/AppCodeList'
+  import AppCodeList from './child/AppCodeList';
+  import AppButton from './base/AppButton';
 
   import { dapatkanOpsi, kirimData, unduhKode } from '../utils'
   import { URL_API, OPSI_STRINGIFY } from '../constants'
@@ -64,7 +87,8 @@
       AppOptionEditor,
       AppCodeEditor,
       AppCodeListOption,
-      AppCodeList
+      AppCodeList,
+      AppButton
     },
     data() {
     return {
@@ -83,7 +107,8 @@
         apakahHighlightMenyala: 1
       },
       hasilHighlight: '',
-      daftarBahasaPemrograman: []
+      daftarBahasaPemrograman: [],
+      showCodeEditor: true
     }
   },
   watch: {
@@ -118,7 +143,8 @@
         namaBerkas: null,
         highlight: null,
         twoslashTerpilih: null,
-      }
+      };
+      this.showCodeEditor = true;
     },
     async dapatkanDaftarKode() {
       await this.$store.dispatch('kode/dapatkanSemuaKode', {
@@ -235,10 +261,25 @@
       } finally {
         this.$store.dispatch('processing/stopProcessing', null)
       }
+    },
+    klikTabEditor() {
+      this.showCodeEditor = true;
+    },
+    klikTabCodeList() {
+      this.showCodeEditor = false;
     }
   }
   }
 </script>
 <style scoped>
-
+  .title {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    flex-direction: column;
+  }
+  .flex-tab {
+    display: flex;
+    flex-direction: row;
+  }
 </style>

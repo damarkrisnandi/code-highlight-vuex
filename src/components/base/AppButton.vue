@@ -42,7 +42,7 @@ export default {
 <style scoped>
     .base-button {
         border-width: 0;
-        padding: 10px;
+        padding: 15px;
         width: 120px;
         height: 2.8em;
         font-size: 15px;
@@ -73,5 +73,14 @@ export default {
     .error:hover {
         background-color: lightgray;
         color: orangered;
+    }
+
+    .tab {
+        background-color: lightslategray;
+        color: white;
+    }
+    .tab:hover {
+        background-color:  lightgray;
+        color: lightslategray;
     }
 </style>

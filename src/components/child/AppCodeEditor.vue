@@ -8,9 +8,11 @@
         style="width: 50%; margin-right: 2px;"
       />
       <app-code
+        v-if="inputKode !== null && inputKode !== '' && $store.state.user.userId"
         :kode="hasilHighlight"
         :bahasa-pemrograman="bahasaPemrogramanTerpilih"
         class="tampilan-kode--kustom"
+        style="width: 50%; margin-right: 2px;"
       />
     <!-- <app-card :lang="bahasaPemrograman">
           <template v-slot:code>
