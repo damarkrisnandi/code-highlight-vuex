@@ -1,13 +1,6 @@
 <template>
   <div>
-    <!-- <v-textarea
-        :name="name"
-        :label="label"
-        :value="value"
-        @input="onChange"
-    ></v-textarea> -->
-    <label :for="name">{{ label }}</label>    
-    <textarea :name="name" :id="name" :value="value" cols="30" rows="10"></textarea>
+    <textarea :placeholder="label" :name="name" :id="name" :value="value" @input="onChange" cols="30" rows="10" class="base-text-area"></textarea>
   </div>
 </template>
 
@@ -30,3 +23,17 @@ export default {
   }
 }
 </script>
+<style scoped>
+    .base-text-area {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        font-size: 1rem;
+        border-radius: 0.25em;
+        border-style: inset;
+        border-width: 2px;
+        display: inline-block;
+        font: inherit;
+        padding: 0.5em 0em 0.5em 1em;
+    }
+</style>

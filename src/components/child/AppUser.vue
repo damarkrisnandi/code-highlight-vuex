@@ -33,6 +33,7 @@ import AppButton from '../base/AppButton';
 import AppTextInput from '../base/AppTextInput';
 import { dapatkanOpsi } from '../../utils/index';
 export default {
+    name: 'AppUser',
   data() {
     return {
       inputName: 'udin',
@@ -77,10 +78,10 @@ export default {
         }
       } catch (error) {
         const dataNotifikasiGalat = {
-          apakahTampil: true,
-          pesan: error.message
+          isShowNotif: true,
+          message: error.message
         }
-        this.$store.dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat)
+        this.$store.dispatch('notification/showNotif', dataNotifikasiGalat)
         console.log(error)
       }
     }
@@ -88,13 +89,6 @@ export default {
 }
 </script>
 <style scoped>
-    .d-flex {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content:flex-end;
-    }
-
     .d-flex {
         display: flex;
         flex-direction: row;

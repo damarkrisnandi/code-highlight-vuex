@@ -24,7 +24,7 @@
 import { formulir } from '../../mixins'
 
 export default {
-  name: 'AppFormulirPilihan',
+  name: 'AppDropDown',
   mixins: [formulir],
   props: {
     list: {

@@ -8,6 +8,7 @@
 
 <script>
 export default {
+    name: 'AppNotification',
     data() {
         return {
             timeout: 7000,

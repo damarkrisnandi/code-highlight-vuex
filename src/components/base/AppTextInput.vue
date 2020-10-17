@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- <label :for="name">{{ label }}</label> -->
-    <input :placeholder="label" :type="type" :value="value" :name="name" :id="name" @input="onChange" class="base-text-input">
+    <input :placeholder="label" :type="type" v-model="value" :name="name" :id="name" @input="onChange" class="base-text-input">
   </div>
 </template>
 

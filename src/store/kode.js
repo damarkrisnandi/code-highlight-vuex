@@ -1,5 +1,5 @@
 import { stringifyUrl } from 'query-string'
-import { kirimData } from '../utils'
+import { kirimData } from '../utils/index'
 import { URL_API, OPSI_STRINGIFY } from '../constants'
 
 function state() {
@@ -18,9 +18,9 @@ const mutations = {
 }
 
 const actions = {
-  async dapatkanSemuaKode({ commit, dispatch }, { idPengguna, filter }) {
+  async dapatkanSemuaKode({ commit, dispatch }, { userId, filter }) {
     try {
-      dispatch('proses/tampilkanProses', null, { root: true })
+      dispatch('processing/startProcessing', null, { root: true })
       const objekUrl = {
         url: `${URL_API}/code/list`,
         query: {
@@ -34,7 +34,7 @@ const actions = {
       const url = stringifyUrl(objekUrl, OPSI_STRINGIFY)
 
       const respon = await kirimData(url, {
-        user: idPengguna
+        user: userId
       })
 
       if (respon.success && !respon.error) {
@@ -47,21 +47,22 @@ const actions = {
     } catch (error) {
       commit('resetDaftarKode')
       const dataNotifikasiGalat = {
-        apakahTampil: true,
-        pesan: error.message || 'Silahkan masuk terlebih dahulu'
+        isShowNotif: true,
+        type: 'error',
+        message: error.message || 'Silahkan masuk terlebih dahulu'
       }
-      dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat, { root: true })
-      console.log(error)
+      dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
+      console.log('1', error)
     } finally {
-      dispatch('proses/hilangkanProses', null, { root: true })
+      dispatch('processing/stopProcessing', null, { root: true })
     }
   },
-  async simpanKode({ dispatch }, { idPengguna, konten }) {
+  async simpanKode({ dispatch }, { userId, konten }) {
     try {
-      dispatch('proses/tampilkanProses', null, { root: true })
+      dispatch('processing/startProcessing', null, { root: true })
       const url = `${URL_API}/code/store`
       const data = {
-        user: idPengguna,
+        user: userId,
         content: {
           code: konten.kode,
           lang: konten.bahasaPemrograman,
@@ -75,32 +76,34 @@ const actions = {
 
       if (respon.success && !respon.error) {
         const dataNotifikasi = {
-          apakahTampil: true,
-          pesan: 'Kode berhasil disimpan'
+          isShowNotif: true,
+          type: 'success',
+          message: 'Kode berhasil disimpan'
         }
 
-        await dispatch(`notifikasi/tampilkanNotifikasi`, dataNotifikasi, { root: true })
+        await dispatch(`notification/showNotif`, dataNotifikasi, { root: true })
       } else {
         throw new Error(respon.message)
       }
     } catch (error) {
       const dataNotifikasiGalat = {
-        apakahTampil: true,
-        pesan: error.message || 'Silahkan masuk terlebih dahulu'
+        isShowNotif: true,
+        type: 'error',
+        message: error.message || 'Silahkan masuk terlebih dahulu'
       }
-      dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat, { root: true })
-      console.log(error)
+      dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
+      console.log('2', error)
     } finally {
-      dispatch('proses/hilangkanProses', null, { root: true })
+      dispatch('processing/stopProcessing', null, { root: true })
     }
   },
-  async ubahKode({ dispatch }, { idPengguna, idKode, konten }) {
+  async ubahKode({ dispatch }, { userId, idKode, konten }) {
     try {
-      dispatch('proses/tampilkanProses', null, { root: true })
+      dispatch('processing/startProcessing', null, { root: true })
       const url = `${URL_API}/code/edit`
       const data = {
         id: idKode,
-        user: idPengguna,
+        user: userId,
         content: {
           code: konten.kode,
           lang: konten.bahasaPemrograman,
@@ -114,55 +117,59 @@ const actions = {
 
       if (respon.success && !respon.error) {
         const dataNotifikasi = {
-          apakahTampil: true,
-          pesan: 'Kode berhasil diubah'
+          isShowNotif: true,
+          type: 'success',
+          message: 'Kode berhasil diubah'
         }
 
-        await dispatch(`notifikasi/tampilkanNotifikasi`, dataNotifikasi, { root: true })
+        await dispatch(`notification/showNotif`, dataNotifikasi, { root: true })
       } else {
         throw new Error(respon.message)
       }
     } catch (error) {
       const dataNotifikasiGalat = {
-        apakahTampil: true,
-        pesan: error.message || 'Silahkan masuk terlebih dahulu'
+        isShowNotif: true,
+        type: 'error',
+        message: error.message || 'Silahkan masuk terlebih dahulu'
       }
-      dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat, { root: true })
-      console.log(error)
+      dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
+      console.log('3', error)
     } finally {
-      dispatch('proses/hilangkanProses', null, { root: true })
+      dispatch('processing/stopProcessing', null, { root: true })
     }
   },
-  async hapusKode({ dispatch }, { idPengguna, idKode }) {
+  async hapusKode({ dispatch }, { userId, idKode }) {
     try {
-      dispatch('proses/tampilkanProses', null, { root: true })
+      dispatch('processing/startProcessing', null, { root: true })
       const url = `${URL_API}/code/delete`
       const data = {
         id: idKode,
-        user: idPengguna
+        user: userId
       }
 
       const respon = await kirimData(url, data)
 
       if (respon.success && !respon.error) {
         const dataNotifikasi = {
-          apakahTampil: true,
-          pesan: 'Kode berhasil dihapus'
+          isShowNotif: true,
+          type: 'success',
+          message: 'Kode berhasil dihapus'
         }
 
-        await dispatch(`notifikasi/tampilkanNotifikasi`, dataNotifikasi, { root: true })
+        await dispatch(`notification/showNotif`, dataNotifikasi, { root: true })
       } else {
         throw new Error(respon.message)
       }
     } catch (error) {
       const dataNotifikasiGalat = {
-        apakahTampil: true,
-        pesan: error.message || 'Silahkan masuk terlebih dahulu'
+        isShowNotif: true,
+        type: error,
+        message: error.message || 'Silahkan masuk terlebih dahulu'
       }
-      dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat, { root: true })
-      console.log(error)
+      dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
+      console.log('4', error)
     } finally {
-      dispatch('proses/hilangkanProses', null, { root: true })
+      dispatch('processing/stopProcessing', null, { root: true })
     }
   }
 }

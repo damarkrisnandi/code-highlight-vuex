@@ -1,6 +1,7 @@
 <template>
   <section class="editor-opsi">
-    <app-dropdown
+    <div class="d-flex">
+        <app-dropdown
           :value="bahasaPemrogramanTerpilih"
           name="bahasa-pemrograman"
           label="Pilih Bahasa Pemrograman"
@@ -17,6 +18,7 @@
         :list="daftarTwoslash"
         @input="$emit('update:twoslashTerpilihTerpilih', $event)"
         ></app-dropdown>
+    </div>
     <app-text-input
         :value="namaBerkas"
       name="nama-berkas"
@@ -75,6 +77,7 @@ import AppTextInput from '../base/AppTextInput'
 import AppDropdown from '../base/AppDropDown'
 
 export default {
+    name: 'AppOptionEditor',
   components: {
     AppButton,
     AppTextInput,
@@ -124,16 +127,16 @@ export default {
         }
       } catch (error) {
         const dataNotifikasiGalat = {
-          apakahTampil: true,
-          pesan: error.message
+          isShowNotif: true,
+          message: error.message
         }
-        this.$store.dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat)
+        this.$store.dispatch('notification/showNotif', dataNotifikasiGalat)
         console.log(error)
       }
     },
     async ketikaTombolUnduhDiKlik() {
       try {
-        this.$store.dispatch('proses/tampilkanProses', null)
+        this.$store.dispatch('processing/startProcessing', null)
         const objekUrl = {
           url: URL_API,
           query: {
@@ -150,13 +153,13 @@ export default {
         })
       } catch (error) {
         const dataNotifikasiGalat = {
-          apakahTampil: true,
-          pesan: error.message || 'Gagal mengunduh'
+          isShowNotif: true,
+          message: error.message || 'Gagal mengunduh'
         }
-        this.$store.dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat)
+        this.$store.dispatch('notification/showNotif', dataNotifikasiGalat)
         console.log(error)
       } finally {
-        this.$store.dispatch('proses/hilangkanProses', null)
+        this.$store.dispatch('processing/stopProcessing', null)
       }
     },
     async ketikaTombolSimpanDiKlik() {
@@ -169,16 +172,16 @@ export default {
           twoslash: this.twoslashTerpilih
         })
         await this.$store.dispatch('kode/simpanKode', {
-          idPengguna: this.$store.state.user.userId,
+          userId: this.$store.state.user.userId,
           konten: konten
         })
         await this.$emit('tersimpan')
       } catch (error) {
         const dataNotifikasiGalat = {
-          apakahTampil: true,
-          pesan: error.message || 'Gagal menyimpan'
+          isShowNotif: true,
+          message: error.message || 'Gagal menyimpan'
         }
-        this.$store.dispatch('notifikasi/tampilkanNotifikasi', dataNotifikasiGalat)
+        this.$store.dispatch('notification/showNotif', dataNotifikasiGalat)
         console.log(error)
       }
     }
@@ -202,5 +205,11 @@ export default {
         display: flex;
         flex-direction: row;
         flex-basis: 1;
+    }
+
+    .d-flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 </style>
