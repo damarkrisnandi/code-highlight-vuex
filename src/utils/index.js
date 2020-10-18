@@ -4,6 +4,7 @@ import { URL_API } from "../constants"
 export async function kirimData(url, data) {
   const respon = await fetch(url, {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -16,6 +17,7 @@ export async function kirimData(url, data) {
 export async function unduhKode(url, data) {
   const respon = await fetch(url, {
     method: 'POST',
+    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
@@ -28,7 +30,9 @@ export async function unduhKode(url, data) {
 }
 
 export async function dapatkanOpsi() {
-  return fetch(`${URL_API}/options`)
+  return fetch(`${URL_API}/options`, {
+    mode: 'cors',
+  })
     .then(_ => _.ok ? _.json() : null)
 }
 
