@@ -70,7 +70,6 @@ const actions = {
                 userId: response.data.id
             });
             // tampilkan notifikasi sukses login
-            console.log('cek', response.data);
             await dispatch('notification/showNotif', {
                 message: 'Regiter berhasil!',
                 type: 'success'

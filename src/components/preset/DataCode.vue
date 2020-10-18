@@ -45,7 +45,6 @@ export default {
       immediate: true, // makes the watcher fire on first render, too.
       handler(code) {
         const res = Vue.compile(code)
-        console.log(res);
 
         this.templateRender = res.render
 

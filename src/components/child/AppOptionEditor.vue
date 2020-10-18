@@ -190,7 +190,7 @@ export default {
 </script>
 <style scoped>
     .editor-opsi {
-        width: 30%;
+        width: 40%;
     }
 
     .margin-component {

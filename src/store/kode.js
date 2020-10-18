@@ -52,7 +52,6 @@ const actions = {
         message: error.message || 'Silahkan masuk terlebih dahulu'
       }
       dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
-      console.log('1', error)
     } finally {
       dispatch('processing/stopProcessing', null, { root: true })
     }
@@ -92,7 +91,6 @@ const actions = {
         message: error.message || 'Silahkan masuk terlebih dahulu'
       }
       dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
-      console.log('2', error)
     } finally {
       dispatch('processing/stopProcessing', null, { root: true })
     }
@@ -133,7 +131,6 @@ const actions = {
         message: error.message || 'Silahkan masuk terlebih dahulu'
       }
       dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
-      console.log('3', error)
     } finally {
       dispatch('processing/stopProcessing', null, { root: true })
     }
@@ -167,7 +164,6 @@ const actions = {
         message: error.message || 'Silahkan masuk terlebih dahulu'
       }
       dispatch('notification/showNotif', dataNotifikasiGalat, { root: true })
-      console.log('4', error)
     } finally {
       dispatch('processing/stopProcessing', null, { root: true })
     }

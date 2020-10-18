@@ -237,8 +237,6 @@
             download
           }
         }
-        console.log(objekUrl, OPSI_STRINGIFY);
-        console.log(stringifyUrl(objekUrl, OPSI_STRINGIFY))
         const url = stringifyUrl(objekUrl, OPSI_STRINGIFY)
         
 
