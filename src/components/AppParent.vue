@@ -226,7 +226,7 @@
     },
     async highlighter(inputKode, download) {
       try {
-        this.$store.dispatch('processing/startProcessing', null)
+        // this.$store.dispatch('processing/startProcessing', null)
         const objekUrl = {
           url: URL_API,
           query: {
@@ -257,7 +257,7 @@
         this.$store.dispatch('notification/showNotif', dataNotifikasiGalat)
         console.log(error)
       } finally {
-        this.$store.dispatch('processing/stopProcessing', null)
+        // this.$store.dispatch('processing/stopProcessing', null)
       }
     },
     klikTabEditor() {
