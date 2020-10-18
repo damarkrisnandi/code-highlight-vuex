@@ -280,4 +280,9 @@
     display: flex;
     flex-direction: row;
   }
+  .container {
+    margin: 0 auto;
+    max-width: 80rem;
+    width: 100%;
+  }
 </style>
