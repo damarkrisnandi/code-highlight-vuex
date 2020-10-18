@@ -1,3 +1,6 @@
 module.exports = {
-    runtimeCompiler: true,
+    baseUrl: '',
+    publicPath: process.env.NODE_ENV === 'production'
+      ? '/code-hightlight-vuex/'
+      : '/'
 }
