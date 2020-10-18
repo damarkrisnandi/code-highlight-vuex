@@ -15,6 +15,6 @@ Vue.component(DataLsp.name, DataLsp)
 Vue.component(DataErr.name, DataErr)
 
 new Vue({
-  store,
+  store: store,
   render: h => h(App)
 }).$mount('#app')
