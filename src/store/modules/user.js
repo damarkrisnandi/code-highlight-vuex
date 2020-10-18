@@ -80,8 +80,10 @@ const actions = {
         }
         } catch (error) {
             // handle error dan tampilkan notifikasi gagal login
+            let msg = error.message === 'User is already registered' ? 
+            'User terlah terdaftar, klik login untuk masuk' : 'Registrasi Gagal';
             dispatch('notification/showNotif', {
-                message: `Register Gagal [${error.message}]`,
+                message: msg,
                 type: 'error'
             }, {root: true});
         } finally {
