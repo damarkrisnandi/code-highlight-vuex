@@ -1,6 +1,6 @@
 <template>
   <div>
-    <textarea :placeholder="label" :name="name" :id="name" :value="value" @input="onChange" cols="30" rows="10" class="base-text-area"></textarea>
+    <textarea :placeholder="label" :name="name" :id="name" v-model="value" @input="onChange" cols="30" rows="10" class="base-text-area"></textarea>
   </div>
 </template>
 
