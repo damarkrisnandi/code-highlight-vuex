@@ -17,7 +17,7 @@ export default {
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
-  @import './components/styles/container.css';
+  /* @import './components/styles/container.css'; */
 
   #app {
     font-family: 'Roboto';

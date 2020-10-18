@@ -3,6 +3,7 @@ import App from './App.vue'
 import store from './store'
 
 import './assets/highlighter.css'
+import './components/styles/container.css';
 
 import DataCode from './components/preset/DataCode'
 import DataLsp from './components/preset/DataLsp'
