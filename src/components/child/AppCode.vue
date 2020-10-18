@@ -13,7 +13,7 @@
                 v-if="idKode"
                 :name="idKode"
                 label="Hapus"
-                type="error"
+                color="error"
                 class="margin-bottom-right"
                 @onClick="ketikaTombolHapusDiKlik"
             />

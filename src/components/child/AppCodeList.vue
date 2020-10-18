@@ -39,10 +39,12 @@ export default {
 <style scoped>
     .flex {
         display: flex;
+        flex-wrap: wrap;
     }
 
     .items {
         width: 50%;
-        margin: 0px 2px 2px 0px;
+        margin: 2px 2px 2px 0px;
+        flex: 1 0 33%;
     }
 </style>

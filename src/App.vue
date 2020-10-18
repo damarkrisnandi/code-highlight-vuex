@@ -20,7 +20,8 @@ export default {
   @import './components/styles/container.css';
 
   #app {
-    font-family: 'Roboto';    
+    font-family: 'Roboto';
+    background: lightsteelblue;
   }
 
   #main {
