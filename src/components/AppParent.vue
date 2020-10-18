@@ -160,7 +160,7 @@
     },
     async ketikaTombolUnduhDiKlik() {
       try {
-        this.$store.dispatch('processing/showProcessing', null)
+        this.$store.dispatch('processing/startProcessing', null)
         const objekUrl = {
           url: URL_API,
           query: {
@@ -226,7 +226,7 @@
     },
     async highlighter(inputKode, download) {
       try {
-        this.$store.dispatch('processing/showProcessing', null)
+        this.$store.dispatch('processing/startProcessing', null)
         const objekUrl = {
           url: URL_API,
           query: {
