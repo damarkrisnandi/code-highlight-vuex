@@ -18,14 +18,14 @@
       
     </div>
     <div class="d-flex">
-        <app-dropdown
-      :value="banyakData"
-      name="banyak-data"
-      label="Banyak Data"
-      type="number"
-      class="margin-bottom-right"
-      @input="$emit('update:banyakData', $event)"
-    />
+        <app-text-input 
+        :value="banyakData" 
+        name="banyak data" 
+        label="Banyak Data" 
+        class="margin-bottom-right"
+        type="number"
+        @input="$emit('update:banyakData', $event)"
+        />
     <app-dropdown
       :value="urutkanBerdasarkan"
       name="urutkan-berdasarkan"
@@ -50,7 +50,8 @@
 
 <script>
 import AppButton from '../base/AppButton';
-import AppDropdown from '../base/AppDropDown'
+import AppDropdown from '../base/AppDropDown';
+import AppTextInput from '../base/AppTextInput';
 export default {
 name: 'AppCodeListOption',
   props: {
@@ -82,7 +83,8 @@ name: 'AppCodeListOption',
   },
   components: {
       AppButton,
-      AppDropdown
+      AppDropdown,
+      AppTextInput
   },
   data() {
     return {
